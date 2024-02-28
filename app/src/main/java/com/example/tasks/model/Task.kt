@@ -1,7 +1,21 @@
 package com.example.tasks.model
 
-data class Task (
-    var taskId : Int,
-    var title : String,
-    var description : String
-)
+import com.google.firebase.firestore.Exclude
+import com.google.firebase.firestore.IgnoreExtraProperties
+import java.io.Serializable
+
+@IgnoreExtraProperties
+data class Task(
+    var id: String? = null,
+    var title: String? = null,
+    var description: String? = null,
+): Serializable {
+    @Exclude
+    fun toMap(): Map<String, Any?> {
+        return mapOf(
+            "id" to id,
+            "title" to title,
+            "description" to description,
+        )
+    }
+}
