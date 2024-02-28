@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         setupViewModel()
         setupRecyclerView()
+        createNewTask()
     }
 
     private fun setupViewModel(){
@@ -48,6 +49,14 @@ class MainActivity : AppCompatActivity() {
             binding.rvTasks.visibility = View.VISIBLE
 //            binding.tilEmptyList.visibility = View.GONE
             taskAdapter.updateList(trainings)
+        }
+    }
+
+    private fun createNewTask(){
+        binding.fabNewTask.setOnClickListener {
+            Intent(this@MainActivity, TaskDetailsActivity::class.java).also {
+                startActivity(it)
+            }
         }
     }
 }

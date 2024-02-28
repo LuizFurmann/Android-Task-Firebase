@@ -28,4 +28,20 @@ class TaskRepository {
         }
         return responseTask
     }
+
+    fun createTask(task: Task) {
+        val docRef = db.collection(tasks)
+        docRef.add(task.toMap()).addOnSuccessListener {
+        }.addOnFailureListener {
+            Log.d("createTask >>>>>", it.localizedMessage!!)
+        }
+    }
+
+    fun updateTask(task: Task) {
+        val docRef = db.collection(tasks)
+        docRef.document(task.id!!).update(task.toMap()).addOnSuccessListener {
+        }.addOnFailureListener {
+            Log.d("updateTask >>>>>", it.localizedMessage!!)
+        }
+    }
 }
