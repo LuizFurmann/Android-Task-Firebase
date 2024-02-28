@@ -36,7 +36,7 @@ class TaskDetailsActivity : AppCompatActivity() {
         if (isEdit) {
             var task = intent.getSerializableExtra(EXTRA_DATA) as Task
             binding.etTitle.setText(task.title.toString())
-            binding.etDescription.setText(task.title.toString())
+            binding.etDescription.setText(task.description.toString())
         }
     }
 

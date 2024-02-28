@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tasks.R
 import com.example.tasks.databinding.ActivityMainBinding
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupRecyclerView(){
         binding.rvTasks.adapter = taskAdapter
-        binding.rvTasks.layoutManager = LinearLayoutManager(this)
+        binding.rvTasks.layoutManager = GridLayoutManager(this, 2)
     }
 
     private fun updateList(trainings: List<Task>){

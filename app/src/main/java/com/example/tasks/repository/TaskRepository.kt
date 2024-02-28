@@ -44,4 +44,12 @@ class TaskRepository {
             Log.d("updateTask >>>>>", it.localizedMessage!!)
         }
     }
+
+    fun deleteTask(id: String) {
+        val docRef = db.collection(tasks)
+        docRef.document(id).delete().addOnSuccessListener {
+        }.addOnFailureListener {
+            Log.d("deleteTask >>>>>", it.localizedMessage!!)
+        }
+    }
 }

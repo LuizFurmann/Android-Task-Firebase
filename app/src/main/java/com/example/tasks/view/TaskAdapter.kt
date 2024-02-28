@@ -28,8 +28,16 @@ class TaskAdapter(private var context: Context) :
 
     override fun onBindViewHolder(holder: TrainingViewHolder, position: Int) {
         val currentItem = taskList[position]
-        holder.title = currentItem.title.toString()
-        holder.description = currentItem.description.toString()
+        holder.binding.tvTitle.text = currentItem.title.toString()
+        holder.binding.tvDescription.text = currentItem.description.toString()
+
+        holder.itemView.setOnClickListener {
+            Intent(context, TaskDetailsActivity::class.java).also {
+                it.putExtra(TaskDetailsActivity.REQ_EDIT, true)
+                it.putExtra(TaskDetailsActivity.EXTRA_DATA, currentItem)
+                context.startActivity(it)
+            }
+        }
 
     }
 
@@ -37,7 +45,7 @@ class TaskAdapter(private var context: Context) :
 
     class TrainingViewHolder(val binding: RowTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        var title = binding.tvTitle.toString()
-        var description = binding.tvDescription.toString()
+        var title = binding.tvTitle.text
+        var description = binding.tvDescription.text
     }
 }

@@ -25,4 +25,6 @@ class TaskViewModel: ViewModel() {
     fun createTask(task: Task) = taskRepository.createTask(task)
 
     fun updateTask(task: Task) = taskRepository.updateTask(task)
+
+    fun deleteTask(id: String) = taskRepository.deleteTask(id)
 }
