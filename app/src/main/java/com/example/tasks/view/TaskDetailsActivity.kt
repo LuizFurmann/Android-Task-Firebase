@@ -51,6 +51,7 @@ class TaskDetailsActivity : AppCompatActivity() {
                     binding.etDescription.text.toString(),
                 )
                 taskViewModel.updateTask(task)
+                finish()
             }else{
                 var task = Task()
                 val newTask = Task(
@@ -59,6 +60,7 @@ class TaskDetailsActivity : AppCompatActivity() {
                     binding.etDescription.text.toString(),
                 )
                 taskViewModel.createTask(newTask)
+                finish()
             }
         }
     }

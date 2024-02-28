@@ -1,17 +1,17 @@
 package com.example.tasks.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.BaseAdapter
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.tasks.R
 import com.example.tasks.databinding.ActivityMainBinding
 import com.example.tasks.model.Task
 import kotlinx.coroutines.launch
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +27,12 @@ class MainActivity : AppCompatActivity() {
         setupViewModel()
         setupRecyclerView()
         createNewTask()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupViewModel()
+        setupRecyclerView()
     }
 
     private fun setupViewModel(){
