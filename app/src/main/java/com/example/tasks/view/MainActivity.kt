@@ -4,22 +4,27 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.tasks.R
 import com.example.tasks.databinding.ActivityMainBinding
 import com.example.tasks.model.Task
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 import java.lang.reflect.Field
 
 
-class MainActivity : AppCompatActivity(), AdapterInteractions{
+class MainActivity : AppCompatActivity(), NoteLongClickListener{
 
     private lateinit var binding: ActivityMainBinding
     private var taskAdapter = TaskAdapter(this, this)
     private val taskViewModel: TaskViewModel by viewModels()
+
+    var clickedItem = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -88,8 +93,22 @@ class MainActivity : AppCompatActivity(), AdapterInteractions{
         return super.onPrepareOptionsMenu(menu)
     }
 
-    override fun refreshActivity() {
-        recreate();
-//        setupViewModel()
+    override fun onNoteClicked(task: Task) {
+        clickedItem = task.id.toString()
+    }
+
+    override fun onOptionClicked(itemId: Int) {
+        if(itemId == R.id.deleteNote){
+            val builder = MaterialAlertDialogBuilder(this, R.style.MaterialAlertDialog_rounded)
+            builder.setMessage("Deseja deletar a tarefa?")
+            builder.setPositiveButton(getString(R.string.yes)) { dialog, which ->
+                taskViewModel.deleteTask(clickedItem)
+                setupViewModel()
+                setupRecyclerView()
+            }
+            builder.setNegativeButton(getString(R.string.no)) { dialog, which ->
+            }
+            builder.show()
+        }
     }
 }
