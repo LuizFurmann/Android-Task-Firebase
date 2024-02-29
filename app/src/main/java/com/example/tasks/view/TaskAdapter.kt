@@ -11,13 +11,15 @@ import com.example.tasks.R
 import com.example.tasks.StringHelper
 import com.example.tasks.databinding.RowTaskBinding
 import com.example.tasks.model.Task
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.Locale
 
-class TaskAdapter(private var context: Context) :
+class TaskAdapter(private var listener : AdapterInteractions, private var context: Context) :
     RecyclerView.Adapter<TaskAdapter.TrainingViewHolder>() {
 
     private var taskList = arrayListOf<Task>()
     private var tasksFiltered = arrayListOf<Task>()
+    private var taskViewModel = TaskViewModel()
 
     fun updateList(tasks: List<Task>) {
         this.taskList.clear()
@@ -61,12 +63,21 @@ class TaskAdapter(private var context: Context) :
                             context.startActivity(it)
                         }
                     }
-                    R.id.deleteNote->{ }
+                    R.id.deleteNote->{
+                        val builder = MaterialAlertDialogBuilder(context, R.style.MaterialAlertDialog_rounded)
+                        builder.setMessage("Deseja deletar a tarefa?")
+                        builder.setPositiveButton(context.getString(R.string.yes)) { dialog, which ->
+                            taskViewModel.deleteTask(currentItem.id.toString())
+                            listener.refreshActivity();
+                        }
+                        builder.setNegativeButton(context.getString(R.string.no)) { dialog, which ->
+                        }
+                        builder.show()
+                    }
                 }
                 true
             }
             pop.show()
-
             true
         }
     }

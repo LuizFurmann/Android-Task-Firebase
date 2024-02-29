@@ -15,10 +15,10 @@ import kotlinx.coroutines.launch
 import java.lang.reflect.Field
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AdapterInteractions{
 
     private lateinit var binding: ActivityMainBinding
-    private var taskAdapter = TaskAdapter(this)
+    private var taskAdapter = TaskAdapter(this, this)
     private val taskViewModel: TaskViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,16 +32,16 @@ class MainActivity : AppCompatActivity() {
         noteFilter()
     }
 
-    private fun noteFilter(){
-        binding.tvSearchTask.editText!!.addTextChangedListener {
-            taskAdapter.getFilter().filter(it.toString())
-        }
-    }
-
     override fun onResume() {
         super.onResume()
         setupViewModel()
         setupRecyclerView()
+    }
+
+    private fun noteFilter(){
+        binding.tvSearchTask.editText!!.addTextChangedListener {
+            taskAdapter.getFilter().filter(it.toString())
+        }
     }
 
     private fun setupViewModel(){
@@ -88,7 +88,8 @@ class MainActivity : AppCompatActivity() {
         return super.onPrepareOptionsMenu(menu)
     }
 
-
-
-
+    override fun refreshActivity() {
+        recreate();
+//        setupViewModel()
+    }
 }
