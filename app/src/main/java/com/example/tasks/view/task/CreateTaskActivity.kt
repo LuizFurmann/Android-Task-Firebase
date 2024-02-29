@@ -1,5 +1,6 @@
 package com.example.tasks.view.task
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -15,6 +16,9 @@ class CreateTaskActivity : AppCompatActivity() {
     private lateinit var binding : ActivityCreateTaskBinding
     private lateinit var firebaseFirestore: FirebaseFirestore
     private val taskViewModel: TaskViewModel by viewModels()
+
+    private val REQUEST_IMAGE = 100
+    private var profilePicturePath: String? = null
 
     companion object {
         const val EXTRA_DATA = "extra_data"
@@ -32,6 +36,7 @@ class CreateTaskActivity : AppCompatActivity() {
         setupToolbar()
         createTask()
         updateView()
+        selectImage()
     }
 
     fun updateView(){
@@ -39,6 +44,33 @@ class CreateTaskActivity : AppCompatActivity() {
             var task = intent.getSerializableExtra(EXTRA_DATA) as Task
             binding.etTitle.setText(task.title.toString())
             binding.etDescription.setText(task.description.toString())
+        }
+    }
+
+    private fun selectImage(){
+        binding.selectedImage.setOnClickListener {
+            imageChooser()
+        }
+    }
+
+    private fun imageChooser() {
+        val i = Intent()
+        i.type = "image/*"
+        i.action = Intent.ACTION_OPEN_DOCUMENT
+        startActivityForResult(Intent.createChooser(i, getString(R.string.selectImage)), REQUEST_IMAGE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_IMAGE) {
+            val selectedImageUri = data?.data
+            if (null != selectedImageUri) {
+
+                val rPermPersist = Intent.FLAG_GRANT_READ_URI_PERMISSION
+                this.contentResolver.takePersistableUriPermission(data?.data!!, rPermPersist)
+                binding.selectedImage.setImageURI(data?.data)
+                profilePicturePath = selectedImageUri.toString()
+            }
         }
     }
 

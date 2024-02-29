@@ -25,6 +25,22 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <ImageView
+                android:id="@+id/selectedImage"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:layout_margin="16dp"
+                android:layout_gravity="center"
+                android:src="@drawable/img_default"
+                android:adjustViewBounds="true" />
+
+            <TextView
+                android:id="@+id/selectImageTittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/selectImage"
+                android:layout_gravity="center"/>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilTitle"
                 android:layout_width="match_parent"
