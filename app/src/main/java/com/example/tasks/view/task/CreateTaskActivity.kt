@@ -2,7 +2,9 @@ package com.example.tasks.view.task
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.activity.viewModels
+import com.example.tasks.R
 import com.example.tasks.databinding.ActivityCreateTaskBinding
 import com.example.tasks.model.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -27,6 +29,7 @@ class CreateTaskActivity : AppCompatActivity() {
 
         isEdit = intent.getBooleanExtra(REQ_EDIT, false)
         firebaseFirestore = FirebaseFirestore.getInstance()
+        setupToolbar()
         createTask()
         updateView()
     }
@@ -64,6 +67,25 @@ class CreateTaskActivity : AppCompatActivity() {
                 taskViewModel.createTask(newTask)
                 finish()
             }
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun setupToolbar() {
+        title = ""
+        var actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_back)
+            actionBar.setDisplayHomeAsUpEnabled(true)
         }
     }
 }

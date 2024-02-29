@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawerLayout"
+    android:background="@drawable/background"
     tools:context=".view.task.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,8 +16,9 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Notes"
+        android:text="Tarefas"
         android:layout_margin="10dp"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="30sp"
         app:layout_constraintTop_toTopOf="parent"
