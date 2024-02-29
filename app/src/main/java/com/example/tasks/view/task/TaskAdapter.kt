@@ -1,4 +1,4 @@
-package com.example.tasks.view
+package com.example.tasks.view.task
 
 import android.content.Context
 import android.content.Intent
@@ -11,10 +11,9 @@ import com.example.tasks.R
 import com.example.tasks.StringHelper
 import com.example.tasks.databinding.RowTaskBinding
 import com.example.tasks.model.Task
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.Locale
 
-class TaskAdapter(private val clickListener: NoteLongClickListener, private var context: Context) :
+class TaskAdapter(private val clickListener: TaskLongClickListener, private var context: Context) :
     RecyclerView.Adapter<TaskAdapter.TrainingViewHolder>() {
 
     private var taskList = arrayListOf<Task>()

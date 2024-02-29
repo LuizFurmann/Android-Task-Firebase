@@ -1,4 +1,4 @@
-package com.example.tasks.view
+package com.example.tasks.view.task
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

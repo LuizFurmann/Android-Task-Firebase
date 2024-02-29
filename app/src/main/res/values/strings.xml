@@ -3,4 +3,8 @@
 
     <string name="yes">Sim</string>
     <string name="no">Não</string>
+
+    <string name="requiredField">Campo obrigatório</string>
+    <string name="invalidUserOrPassword">Usuário ou senha incorreto</string>
+    <string name="understand">Entendi</string>
 </resources>

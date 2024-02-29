@@ -15,13 +15,10 @@
         android:theme="@style/Theme.Tasks"
         tools:targetApi="31">
         <activity
-            android:name=".view.TaskDetailsActivity"
+            android:name=".view.authentication.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".view.CreateTaskActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.MainActivity"
+            android:name=".view.authentication.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +26,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".view.task.TaskDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.task.CreateTaskActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.task.MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

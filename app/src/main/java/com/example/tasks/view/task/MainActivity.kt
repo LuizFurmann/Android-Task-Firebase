@@ -1,10 +1,9 @@
-package com.example.tasks.view
+package com.example.tasks.view.task
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
@@ -18,7 +17,7 @@ import kotlinx.coroutines.launch
 import java.lang.reflect.Field
 
 
-class MainActivity : AppCompatActivity(), NoteLongClickListener{
+class MainActivity : AppCompatActivity(), TaskLongClickListener {
 
     private lateinit var binding: ActivityMainBinding
     private var taskAdapter = TaskAdapter(this, this)
