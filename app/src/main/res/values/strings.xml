@@ -7,4 +7,6 @@
     <string name="requiredField">Campo obrigatório</string>
     <string name="invalidUserOrPassword">Usuário ou senha incorreto</string>
     <string name="understand">Entendi</string>
+    <string name="registerError">Erro ao cadastrar</string>
+    <string name="worngPassword">As senhas precisam ser iguais</string>
 </resources>

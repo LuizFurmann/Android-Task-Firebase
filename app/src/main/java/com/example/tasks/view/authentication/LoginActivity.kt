@@ -51,26 +51,14 @@ class LoginActivity : AppCompatActivity() {
 
             if (binding.tilEmail.editText?.text.toString().isNullOrEmpty()) {
                 binding.tilEmail.editText?.error = getString(R.string.requiredField)
-                binding.tilEmail.setBoxStrokeColorStateList(colorState)
-                binding.tilEmail.hintTextColor =
-                    ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red))
             } else {
                 binding.tilEmail.editText?.error = null
-                binding.tilEmail.setBoxStrokeColorStateList(colorStateValid)
-                binding.tilEmail.hintTextColor =
-                    ColorStateList.valueOf(ContextCompat.getColor(this, R.color.grey))
             }
 
             if (binding.tilPassword.editText?.text.toString().isNullOrEmpty()) {
                 binding.tilPassword.editText?.error = getString(R.string.requiredField)
-                binding.tilPassword.setBoxStrokeColorStateList(colorState)
-                binding.tilPassword.hintTextColor =
-                    ColorStateList.valueOf(ContextCompat.getColor(this, R.color.red))
             } else {
                 binding.tilPassword.editText?.error = null
-                binding.tilPassword.setBoxStrokeColorStateList(colorStateValid)
-                binding.tilPassword.hintTextColor =
-                    ColorStateList.valueOf(ContextCompat.getColor(this, R.color.grey))
             }
 
             if (loginValidation()) {

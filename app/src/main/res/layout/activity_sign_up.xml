@@ -125,7 +125,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnRegister"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:text="Criar"
@@ -133,6 +133,16 @@
         android:textSize="20sp"
         android:layout_marginTop="40dp"
         app:layout_constraintTop_toBottomOf="@+id/cardPasswordConfirmation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="70dp"
+        android:src="@drawable/ic_arrow"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
