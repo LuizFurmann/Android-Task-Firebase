@@ -14,8 +14,8 @@ class TaskViewModel: ViewModel() {
     var taskList = MutableLiveData<List<Task>>()
     val getListLiveData = MutableLiveData<List<Task>>()
 
-    fun getTasks(): MutableLiveData<List<Task>> {
-        return taskRepository.getTasks()
+    fun getTasks(userId : String): MutableLiveData<List<Task>> {
+        return taskRepository.getTasks(userId)
     }
 
     fun createTask(task: Task) = taskRepository.createTask(task)

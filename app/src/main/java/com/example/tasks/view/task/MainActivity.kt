@@ -13,6 +13,7 @@ import com.example.tasks.R
 import com.example.tasks.databinding.ActivityMainBinding
 import com.example.tasks.model.Task
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import java.lang.reflect.Field
 
@@ -34,6 +35,8 @@ class MainActivity : AppCompatActivity(), TaskLongClickListener {
         setupRecyclerView()
         createNewTask()
         noteFilter()
+
+        val currentUserID = FirebaseAuth.getInstance().currentUser!!.email
     }
 
     override fun onResume() {
@@ -49,7 +52,8 @@ class MainActivity : AppCompatActivity(), TaskLongClickListener {
     }
 
     private fun setupViewModel(){
-        taskViewModel.getTasks().observe(this) { task ->
+        val currentUserID = FirebaseAuth.getInstance().currentUser!!.uid
+        taskViewModel.getTasks(currentUserID).observe(this) { task ->
             lifecycleScope.launch {
                 updateList(task)
                 binding.pbTask.visibility = View.GONE

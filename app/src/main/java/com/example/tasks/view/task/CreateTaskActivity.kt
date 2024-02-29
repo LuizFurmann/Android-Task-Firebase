@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.tasks.databinding.ActivityCreateTaskBinding
 import com.example.tasks.model.Task
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class CreateTaskActivity : AppCompatActivity() {
@@ -40,11 +41,13 @@ class CreateTaskActivity : AppCompatActivity() {
 
     private fun createTask() {
         binding.btnSaveTask.setOnClickListener {
+            val currentUserID = FirebaseAuth.getInstance().currentUser!!.uid
             if(intent.getSerializableExtra(EXTRA_DATA) != null){
                 var task = intent.getSerializableExtra(EXTRA_DATA) as Task
 
                 val taskUpdate = Task(
                     task.id,
+                    currentUserID,
                     binding.etTitle.text.toString(),
                     binding.etDescription.text.toString(),
                 )
@@ -54,6 +57,7 @@ class CreateTaskActivity : AppCompatActivity() {
                 var task = Task()
                 val newTask = Task(
                     task.id,
+                    currentUserID,
                     binding.etTitle.text.toString(),
                     binding.etDescription.text.toString(),
                 )
