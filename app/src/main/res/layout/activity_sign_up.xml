@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_round_auth"
-                android:drawableStart="@drawable/ic_user"
+                android:drawableStart="@drawable/ic_email"
                 android:drawablePadding="5dp"
                 android:hint="E-mail"
                 android:lines="1"
