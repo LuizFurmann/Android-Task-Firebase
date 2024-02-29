@@ -1,6 +1,7 @@
 ﻿# Android-Task-Firebase
 Aplicativo Android de Notas criado utilizando a linguagem Kotlin, com banco de dados no Firebase,
 contém operações no banco, criar, editar, visualizar e excluir. Também contém autenticação com Firebase utilizando Email.
+Neste projeto utilizei o padrão de projeto MVVM, também o pattern Repository, para a comunicação entre o layout e a classe foi utilizado o ViewBinding.
 
 ![Screenshot_20240229_143203](https://github.com/LuizFurmann/Android-Task-Firebase/assets/72764480/8f2e4254-80b5-4662-9f5d-aa3c4faa0cb6)
 ![Screenshot_20240229_142711](https://github.com/LuizFurmann/Android-Task-Firebase/assets/72764480/24ccd2fe-0fa5-4a1e-b414-543aaa2de2f4)
