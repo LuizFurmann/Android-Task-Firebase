@@ -42,8 +42,7 @@ class TaskAdapter(private val clickListener: TaskLongClickListener, private var 
 
         holder.itemView.setOnClickListener {
             Intent(context, TaskDetailsActivity::class.java).also {
-                it.putExtra(CreateTaskActivity.REQ_EDIT, true)
-                it.putExtra(CreateTaskActivity.EXTRA_DATA, currentItem)
+                it.putExtra("Task", currentItem)
                 context.startActivity(it)
             }
         }

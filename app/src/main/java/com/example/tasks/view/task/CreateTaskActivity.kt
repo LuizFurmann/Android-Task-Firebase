@@ -41,14 +41,14 @@ class CreateTaskActivity : AppCompatActivity() {
     private fun createTask() {
         binding.btnSaveTask.setOnClickListener {
             if(intent.getSerializableExtra(EXTRA_DATA) != null){
-                var users = intent.getSerializableExtra(EXTRA_DATA) as Task
+                var task = intent.getSerializableExtra(EXTRA_DATA) as Task
 
-                val task = Task(
-                    users.id,
+                val taskUpdate = Task(
+                    task.id,
                     binding.etTitle.text.toString(),
                     binding.etDescription.text.toString(),
                 )
-                taskViewModel.updateTask(task)
+                taskViewModel.updateTask(taskUpdate)
                 finish()
             }else{
                 var task = Task()
