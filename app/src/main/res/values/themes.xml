@@ -6,4 +6,5 @@
     </style>
 
     <style name="Theme.Tasks" parent="Base.Theme.Tasks" />
+
 </resources>

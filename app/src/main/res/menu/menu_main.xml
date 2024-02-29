@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:name="myOverflowMenu"
+        android:title="Opções"
+        android:iconTint="@color/orange"/>
+
+    <item android:id="@+id/editNote"
+        android:title="Editar"
+        android:icon="@drawable/ic_edit"/>
+
+    <item android:id="@+id/deleteNote"
+        android:title="Deletar"
+        android:icon="@drawable/ic_add"
+        app:showAsAction="always" />
+
+</menu>
