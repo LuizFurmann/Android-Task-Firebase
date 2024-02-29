@@ -41,6 +41,7 @@ class TaskDetailsActivity : AppCompatActivity() {
     }
 
     private fun setupToolbar() {
+        title = ""
         var actionBar = supportActionBar
         if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_back)

@@ -3,16 +3,22 @@ package com.example.tasks.view.task
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.tasks.R
 import com.example.tasks.databinding.ActivityMainBinding
 import com.example.tasks.model.Task
+import com.example.tasks.view.authentication.LoginActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 import java.lang.reflect.Field
@@ -23,6 +29,7 @@ class MainActivity : AppCompatActivity(), TaskLongClickListener {
     private lateinit var binding: ActivityMainBinding
     private var taskAdapter = TaskAdapter(this, this)
     private val taskViewModel: TaskViewModel by viewModels()
+    private lateinit var toggle: ActionBarDrawerToggle
 
     var clickedItem = ""
 
@@ -30,19 +37,51 @@ class MainActivity : AppCompatActivity(), TaskLongClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        title = ""
 
+        setupNavHeader()
+        setupDrawer()
         setupViewModel()
         setupRecyclerView()
         createNewTask()
         noteFilter()
-
-        val currentUserID = FirebaseAuth.getInstance().currentUser!!.email
     }
 
     override fun onResume() {
         super.onResume()
         setupViewModel()
         setupRecyclerView()
+    }
+
+    private fun setupNavHeader() {
+        val user = FirebaseAuth.getInstance().currentUser!!
+        val headerView = binding.navView.getHeaderView(0)
+        val navUsername = headerView.findViewById<View>(R.id.userEmail) as TextView
+        navUsername.text = user.email.toString()
+    }
+
+    private fun setupDrawer() {
+        val draweLayout: DrawerLayout = binding.drawerLayout
+        val navView: NavigationView = binding.navView
+
+        toggle = ActionBarDrawerToggle(this, draweLayout, R.string.open, R.string.close)
+        draweLayout.addDrawerListener(toggle)
+        toggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        binding.navView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_logout -> logout()
+            }
+            true
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (toggle.onOptionsItemSelected(item))
+            return true
+        return super.onOptionsItemSelected(item)
     }
 
     private fun noteFilter(){
@@ -82,6 +121,14 @@ class MainActivity : AppCompatActivity(), TaskLongClickListener {
             Intent(this@MainActivity, CreateTaskActivity::class.java).also {
                 startActivity(it)
             }
+        }
+    }
+
+    private fun logout() {
+        FirebaseAuth.getInstance().signOut()
+        Intent(this@MainActivity, LoginActivity::class.java).also {
+            startActivity(it)
+            finish()
         }
     }
 

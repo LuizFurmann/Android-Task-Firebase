@@ -12,7 +12,7 @@
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryDark">@color/blue</item>
     </style>
 
@@ -21,7 +21,6 @@
         <item name="android:statusBarColor">@color/blue</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="colorOnPrimary">@color/blue</item>
-        <item name="android:titleTextColor">@color/blue</item>
     </style>
 
     <style name="Theme.Custom.Toolbar" parent="Widget.Material3.Toolbar">
@@ -32,6 +31,8 @@
     <style name="Theme.Tasks" parent="Base.Theme.Tasks" />
 
     <style name="Theme.TasksNoActionBar" parent="Base.Theme.TasksNoActionBar" />
+
+    <style name="Base.Theme.Tasks.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="MaterialAlertDialog_rounded" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
         <item name="shapeAppearanceOverlay">@style/DialogCorners</item>

@@ -35,7 +35,6 @@
             android:exported="false" />
         <activity
             android:name=".view.task.MainActivity"
-            android:theme="@style/Theme.TasksNoActionBar"
             android:exported="true" />
     </application>
 
