@@ -28,6 +28,7 @@ class TaskRepository {
                 task.id = item.id
                 task.title = item.data!!["title"] as String?
                 task.description = item.data!!["description"] as String?
+                task.image = item.data!!["image"] as String?
                 tasks.add(task)
             }
             responseTask.postValue(tasks)

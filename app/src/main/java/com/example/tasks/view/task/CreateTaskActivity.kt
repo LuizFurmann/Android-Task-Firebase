@@ -1,6 +1,7 @@
 package com.example.tasks.view.task
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -42,6 +43,11 @@ class CreateTaskActivity : AppCompatActivity() {
     fun updateView(){
         if (isEdit) {
             var task = intent.getSerializableExtra(EXTRA_DATA) as Task
+
+            var myUri : Uri = Uri.parse(task.image)
+            profilePicturePath = myUri.toString()
+            binding.selectedImage.setImageURI(myUri)
+
             binding.etTitle.setText(task.title.toString())
             binding.etDescription.setText(task.description.toString())
         }
@@ -85,6 +91,7 @@ class CreateTaskActivity : AppCompatActivity() {
                     currentUserID,
                     binding.etTitle.text.toString(),
                     binding.etDescription.text.toString(),
+                    profilePicturePath
                 )
                 taskViewModel.updateTask(taskUpdate)
                 finish()
@@ -95,6 +102,7 @@ class CreateTaskActivity : AppCompatActivity() {
                     currentUserID,
                     binding.etTitle.text.toString(),
                     binding.etDescription.text.toString(),
+                    profilePicturePath
                 )
                 taskViewModel.createTask(newTask)
                 finish()

@@ -10,6 +10,7 @@ data class Task(
     var userId: String? = null,
     var title: String? = null,
     var description: String? = null,
+    var image: String? = null,
 ): Serializable {
     @Exclude
     fun toMap(): Map<String, Any?> {
@@ -18,6 +19,7 @@ data class Task(
             "userId" to userId,
             "title" to title,
             "description" to description,
+            "image" to image,
         )
     }
 }
