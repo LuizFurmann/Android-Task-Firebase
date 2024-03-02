@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity(), TaskLongClickListener {
         val user = FirebaseAuth.getInstance().currentUser!!
         val headerView = binding.navView.getHeaderView(0)
         val navUsername = headerView.findViewById<View>(R.id.userEmail) as TextView
-        navUsername.text = user.displayName.toString()
+        navUsername.text = user.email.toString()
     }
 
     private fun setupDrawer() {
