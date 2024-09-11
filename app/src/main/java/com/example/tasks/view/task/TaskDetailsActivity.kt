@@ -1,6 +1,7 @@
 package com.example.tasks.view.task
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -20,32 +21,21 @@ class TaskDetailsActivity : AppCompatActivity() {
 
         if (intent.getSerializableExtra("Task") != null) {
             task = intent.getSerializableExtra("Task") as Task
-            setupToolbar()
             updateView(task)
         }
     }
 
     private fun updateView(task: Task){
+        if (task.image != null) {
+            var myUri: Uri = Uri.parse(task.image);
+            binding.imgTask.setImageURI(myUri)
+        }
+
         binding.tvTitle.text = task.title
         binding.tvDescription.text = task.description
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun setupToolbar() {
-        title = ""
-        var actionBar = supportActionBar
-        if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_back)
-            actionBar.setDisplayHomeAsUpEnabled(true)
+        binding.btnBack.setOnClickListener {
+            finish()
         }
     }
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.tasks.R
 import com.example.tasks.StringHelper
 import com.example.tasks.databinding.RowTaskBinding
@@ -37,8 +38,12 @@ class TaskAdapter(private val clickListener: TaskLongClickListener, private var 
 
     override fun onBindViewHolder(holder: TrainingViewHolder, position: Int) {
         val currentItem = taskList[position]
+
+        Glide.with(holder.itemView)
+            .load(currentItem.image)
+            .into(holder.imgTask)
+
         holder.binding.tvTitle.text = currentItem.title.toString()
-        holder.binding.tvDescription.text = currentItem.description.toString()
 
         holder.itemView.setOnClickListener {
             Intent(context, TaskDetailsActivity::class.java).also {
@@ -48,22 +53,17 @@ class TaskAdapter(private val clickListener: TaskLongClickListener, private var 
         }
 
         holder.itemView.setOnLongClickListener {
-
             clickListener.onNoteClicked(currentItem)
 
-            val pop= PopupMenu(context,it)
+            val pop = PopupMenu(context, it)
             pop.inflate(R.menu.menu_main)
-            pop.setOnMenuItemClickListener {item->
-                when(item.itemId)
-                {
-                    R.id.editNote->{
-                        Intent(context, CreateTaskActivity::class.java).also {
-                            it.putExtra(CreateTaskActivity.REQ_EDIT, true)
-                            it.putExtra(CreateTaskActivity.EXTRA_DATA, currentItem)
-                            context.startActivity(it)
-                        }
+            pop.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.editTask -> {
+                        clickListener.onOptionClicked(item.itemId)
                     }
-                    R.id.deleteNote->{
+
+                    R.id.deleteTask -> {
                         clickListener.onOptionClicked(item.itemId)
                     }
                 }
@@ -78,13 +78,13 @@ class TaskAdapter(private val clickListener: TaskLongClickListener, private var 
 
     class TrainingViewHolder(val binding: RowTaskBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        var imgTask = binding.imgTask
         var title = binding.tvTitle.text
-        var description = binding.tvDescription.text
     }
 
     fun getFilter(): Filter {
-        val filter : Filter
-        filter = object : Filter(){
+        val filter: Filter
+        filter = object : Filter() {
             override fun performFiltering(filter: CharSequence): FilterResults {
                 var filter = filter
                 val results = FilterResults()
@@ -103,7 +103,7 @@ class TaskAdapter(private val clickListener: TaskLongClickListener, private var 
                         val data = tasksFiltered[i]
                         val nameSearch = StringHelper.getFilterText(data.title)
 
-                        if(nameSearch.contains(filter)) {
+                        if (nameSearch.contains(filter)) {
                             filteredItems.add(data)
                         }
                     }

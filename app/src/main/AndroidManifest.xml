@@ -29,10 +29,8 @@
         </activity>
         <activity
             android:name=".view.task.TaskDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.task.CreateTaskActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.TasksNoActionBar"/>
         <activity
             android:name=".view.task.MainActivity"
             android:exported="true" />
